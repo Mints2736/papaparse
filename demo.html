@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+  <title>ECharts </title>
+</head>
+<body>
+<div class="container" style="height:700px; width: 1000px; margin-top: 4%">
+
+
+  <div class="row">
+
+    <h1> Parsing a csv file using papa parser</h1>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-btn-success">
+        <input type="file" id="csv-file" name="files"/>
+      </button>
+    </div>
+  </div>
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.7/papaparse.min.js"></script>
+
+
+<script src="http://gallery.echartsjs.com/dep/jquery/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+  var data = null;
+
+  function handleFileSelect(evt) {
+    var start, end;
+    var file = evt.target.files[0];
+    start = Date.now();
+    Papa.parse(file, {
+      header: true,
+      complete: function (results) {
+        end = Date.now();
+        console.log(end - start);
+        ;
+        console.log(results.data);
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    $("#csv-file").change(handleFileSelect);
+  });
+
+</script>
+</body>
+</html>
